@@ -1,12 +1,13 @@
 import { Controller } from './types';
+import { ObjectType } from '../GameObjects/types';
 import { Vector } from '../utils';
 import GameRunner from '../GameRunner';
 import Paddle from '../GameObjects/Paddle';
 
 export default class DumbAI implements Controller {
 
-  private gameRunner: GameRunner;
-  private paddle: Paddle;
+  protected gameRunner: GameRunner;
+  protected paddle: Paddle;
 
   constructor(gameRunner: GameRunner) {
     this.gameRunner = gameRunner;
@@ -19,7 +20,7 @@ export default class DumbAI implements Controller {
   destroy() {}
 
   getDelta() {
-    const gameBalls = this.gameRunner.getGameObjects().filter(o => o.name() === 'ball');
+    const gameBalls = this.gameRunner.getGameObjects().filter(o => o.name() === ObjectType.BALL);
     if (gameBalls.length > 0) {
       const closestBall = gameBalls[0];
       const ballFrame = closestBall.collisionFrame();

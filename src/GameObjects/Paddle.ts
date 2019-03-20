@@ -1,4 +1,4 @@
-import { GameObject } from './types';
+import { GameObject, ObjectType } from './types';
 import { Controller } from '../Controllers/types';
 import { randColour, Point } from '../utils';
 
@@ -23,7 +23,7 @@ export default class Paddle implements GameObject {
   }
 
   name() {
-    return 'paddle';
+    return ObjectType.PADDLE;
   }
 
   update() {
@@ -41,6 +41,10 @@ export default class Paddle implements GameObject {
     ctx.fill();
     ctx.closePath();
   }
+
+  getCenter(): Point {
+    return new Point(this.x + this.width/2, this.y + this.height/2);
+  } 
 
   collisionFrame() {
     return {

@@ -1,7 +1,12 @@
 import { Point } from '../utils';
 
+export enum ObjectType {
+  PADDLE,
+  BALL
+}
+
 export interface GameObject {
-  name: () => string;
+  name: () => ObjectType;
   update: () => void;
   render: (ctx: CanvasRenderingContext2D) => void;
   collisionFrame: () => Rectangle
